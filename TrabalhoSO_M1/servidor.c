@@ -11,13 +11,11 @@
 #define PIPE_NAME "/tmp/db_pipe"
 #define MAX_RECORDS 100
 
-// Estrutura do registro
 typedef struct {
     int id;
     char name[50];
 } Record;
 
-// "Banco de dados" simulado
 Record database[MAX_RECORDS];
 int db_count = 0;
 pthread_mutex_t db_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -62,7 +60,7 @@ void *handle_command(void *arg) {
                 }
             }
             if (!found)
-                printf("DELETE: Registro com id=%d n„o encontrado.\n", id);
+                printf("DELETE: Registro com id=%d n√£o encontrado.\n", id);
             pthread_mutex_unlock(&db_mutex);
         } else {
             printf("DELETE: Comando mal formatado: %s\n", cmd);
@@ -143,7 +141,6 @@ int main() {
                 perror("pthread_create");
                 free(command);
             } else {
-                // Desvincula a thread para que seus recursos sejam liberados automaticamente
                 pthread_detach(tid);
             }
         }
