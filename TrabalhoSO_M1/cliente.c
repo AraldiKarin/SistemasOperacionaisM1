@@ -30,7 +30,7 @@ int main() {
             perror("write");
         }
         printf("Enviado: %s", commands[i]);
-        sleep(1);  // Pausa para facilitar a visualização
+        sleep(1);
     }
 
     close(fd);
